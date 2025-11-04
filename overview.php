@@ -92,6 +92,8 @@ $progress = (new completion_progress($course))
     ->for_overview()
     ->for_block_instance($block);
 
+if ($progress->count_activities()>48) redirect(new moodle_url('/report/progress/index.php?course='.$courseid.'&page=0&activityinclude=all&activityorder=orderincourse&activitysection=-1'));
+
 // Prepare a group selector if there are groups in the course.
 $groupids = [];
 $groupoptions = [];
