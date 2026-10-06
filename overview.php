@@ -73,6 +73,10 @@ $output = $PAGE->get_renderer('block_completion_progress');
 
 $progress = (new completion_progress($course))->for_overview()->for_block_instance($blockinstance);
 
+if ($progress->count_activities() > 48) {
+    redirect(new moodle_url('/report/progress/index.php?course='.$courseid.'&page=0&activityinclude=all&activityorder=orderincourse&activitysection=-1'));
+}
+
 $studentroles = $DB->get_fieldset_select('role', 'id', 'archetype = ?', ['student']);
 $usedstudentroles = array_intersect_key(get_roles_used_in_context($context, false), array_flip($studentroles));
 $studentroleid = $usedstudentroles ? array_key_first($usedstudentroles) : 0;

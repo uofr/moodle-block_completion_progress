@@ -336,6 +336,13 @@ class completion_progress implements \renderable, \templatable {
         return !empty($this->activities);
     }
 
+    public function count_activities(): int {
+        if ($this->activities === null) {
+            throw new coding_exception('activities not loaded until for_block_instance() is called');
+        }
+		return count($this->activities);
+	}
+
     /**
      * Return the activities in presentation order.
      * @param string|null $orderoverride
